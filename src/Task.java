@@ -10,6 +10,11 @@ public class Task {
         this.isCompleted = false;
     }
 
+    public void markCompleted() {
+        this.isCompleted = true;
+    }
+
+
     public int getId() {
         return id;
     }
