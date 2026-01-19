@@ -19,8 +19,8 @@ public class TaskImplementation implements TaskInterface {
     }
 
     @Override
-    public void deleteTask(int id) {
-        tasks.removeIf(task -> task.getId() == id);
+    public boolean deleteTask(int id) {
+        return tasks.removeIf(task -> task.getId() == id);
     }
 
 
@@ -31,6 +31,7 @@ public class TaskImplementation implements TaskInterface {
                 task.markCompleted();
                 break;
             }
+
         }
     }
 

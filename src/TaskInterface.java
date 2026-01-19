@@ -5,7 +5,7 @@ public interface TaskInterface {
 
     void addTask(String title);
 
-    void deleteTask(int id);
+    boolean deleteTask(int id);
 
     void completeTask(int id);
 

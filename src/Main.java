@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main{
@@ -24,14 +25,20 @@ public class Main{
            scanner.nextLine();
 
            if(choice == 1){
-               System.out.print("Enter task title: ");
-               String title = scanner.nextLine();
-               taskInterface.addTask(title);
-               System.out.println("Task added.");
-               scanner.nextLine();
-           } else if (choice == 2) {
-               taskInterface.getAllTasks().forEach(task -> System.out.println(task.getId() + ". " + task.getTitle()));
-               scanner.nextLine();
+                   System.out.print("Enter a task: ");
+                   String title = scanner.nextLine();
+                   taskInterface.addTask(title);
+                   System.out.println("Task added.");
+               }
+           else if (choice == 2) {
+               List<Task> tasks = taskInterface.getAllTasks();
+
+               if (tasks.isEmpty()) {
+                   System.out.println("No tasks found. Your task list is empty.");
+               } else {
+                   tasks.forEach(task -> System.out.println(task.getId() + ". " + task.getTitle()));
+               }
+
            } else if (choice == 3) {
                System.out.println("Enter task number you want to complete: ");
                int id = scanner.nextInt();
@@ -41,10 +48,18 @@ public class Main{
            } else if (choice == 4) {
                System.out.print("Enter task number to delete: ");
                int id = scanner.nextInt();
-               taskInterface.deleteTask(id);
-               System.out.println("Task deleted");
-               scanner.nextLine();
+               boolean deleted = taskInterface.deleteTask(id);
+               if(deleted){
+                   System.out.println("Task successfully deleted.");
+               }
+               else {
+                   System.out.println("Task with ID " + id + " does not exist.");
+               }
            }
+           else if(choice != 1 || choice != 2 || choice != 3 || choice != 4 || choice != 5 ){
+               System.out.println("Invalid choice. Please select 1,2,3,4 or 5");
+           }
+
            else{
                isRunning = false;
                System.out.println("Thank you for using the program bye");
@@ -52,4 +67,5 @@ public class Main{
        }
 
     }
+
 }
