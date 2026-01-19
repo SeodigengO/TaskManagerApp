@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskService implements TaskInterface {
+public class TaskImplementation implements TaskInterface {
 
     private List<Task> tasks = new ArrayList<>();
     private int taskId = 1;
@@ -19,8 +19,19 @@ public class TaskService implements TaskInterface {
     }
 
     @Override
-    public void deleteTask(int id){
-        tasks.remove(id);
+    public void deleteTask(int id) {
+        tasks.removeIf(task -> task.getId() == id);
+    }
+
+
+    @Override
+    public void completeTask(int id) {
+        for (Task task : tasks) {
+            if (task.getId() == id) {
+                task.markCompleted();
+                break;
+            }
+        }
     }
 
 

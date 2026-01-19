@@ -22,20 +22,5 @@ public class Task {
     public String getTitle() {
         return title;
     }
-
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCompleted() {
-        isCompleted = true;
-    }
-
-
-
-
+    
 }

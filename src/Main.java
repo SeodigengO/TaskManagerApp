@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main{
    public static void main(String[] args){
 
-       TaskInterface taskInterface = new TaskService();
+       TaskInterface taskInterface = new TaskImplementation();
 
        Scanner scanner = new Scanner(System.in);
 
@@ -28,14 +28,22 @@ public class Main{
                String title = scanner.nextLine();
                taskInterface.addTask(title);
                System.out.println("Task added.");
+               scanner.nextLine();
            } else if (choice == 2) {
                taskInterface.getAllTasks().forEach(task -> System.out.println(task.getId() + ". " + task.getTitle()));
+               scanner.nextLine();
            } else if (choice == 3) {
-               System.out.println("Complete");
+               System.out.println("Enter task number you want to complete: ");
+               int id = scanner.nextInt();
+               taskInterface.completeTask(id);
+               System.out.println("Task is complete");
+               scanner.nextLine();
            } else if (choice == 4) {
+               System.out.print("Enter task number to delete: ");
                int id = scanner.nextInt();
                taskInterface.deleteTask(id);
-               System.out.println("Task successfully deleted");
+               System.out.println("Task deleted");
+               scanner.nextLine();
            }
            else{
                isRunning = false;
