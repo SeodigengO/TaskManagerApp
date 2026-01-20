@@ -7,6 +7,6 @@ public interface TaskInterface {
 
     boolean deleteTask(int id);
 
-    void completeTask(int id);
+    boolean completeTask(int id);
 
 }

@@ -25,15 +25,16 @@ public class TaskImplementation implements TaskInterface {
 
 
     @Override
-    public void completeTask(int id) {
+    public boolean completeTask(int id) {
         for (Task task : tasks) {
             if (task.getId() == id) {
                 task.markCompleted();
-                break;
+                return true;
             }
-
         }
+        return false;
     }
+
 
 
 }

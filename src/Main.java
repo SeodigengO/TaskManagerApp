@@ -10,9 +10,9 @@ public class Main{
 
        int choice;
        boolean isRunning = true;
+       System.out.println("Welcome to your task manager app!");
 
-       while(isRunning){
-           System.out.println("Welcome to your task manager app!");
+       while(isRunning) {
 
            System.out.println("1.Add a task");
            System.out.println("2.View All tasks");
@@ -21,51 +21,60 @@ public class Main{
            System.out.println("5.Exit");
 
            System.out.println("Please choose 1,2,3,4 or 5: ");
-           choice = scanner.nextInt();
-           scanner.nextLine();
+           String input = scanner.nextLine();
+           try {
+               choice = Integer.parseInt(input);
 
-           if(choice == 1){
-                   System.out.print("Enter a task: ");
-                   String title = scanner.nextLine();
-                   taskInterface.addTask(title);
-                   System.out.println("Task added.");
+               switch (choice) {
+                   case 1:
+                       System.out.print("Enter a task: ");
+                       String title = scanner.nextLine();
+                       taskInterface.addTask(title);
+                       System.out.println("Task added.");
+                       break;
+                   case 2:
+                       List<Task> tasks = taskInterface.getAllTasks();
+
+                       if (tasks.isEmpty()) {
+                           System.out.println("No tasks found. Your task list is empty.");
+                       } else {
+                           tasks.forEach(task -> System.out.println(task.getId() + ". " + task.getTitle()));
+                       }
+                       break;
+                   case 3:
+                       System.out.println("Enter task number you want to complete: ");
+                       int id = scanner.nextInt();
+                       taskInterface.completeTask(id);
+                       System.out.println("Task is complete");
+                       scanner.nextLine();
+                       break;
+                   case 4:
+                       System.out.print("Enter task number to delete: ");
+                       id = scanner.nextInt();
+                       boolean deleted = taskInterface.deleteTask(id);
+                       if (deleted) {
+                           System.out.println("Task successfully deleted.");
+                       } else {
+                           System.out.println("Task with ID " + id + " does not exist.");
+                       }
+                       break;
+                   case 5:
+                       isRunning = false;
+                       System.out.println("Thank you for using the program bye");
+                       break;
+                   default:
+                       System.out.println("Invalid choice. Please select 1,2,3,4 or 5");
+                       break;
+
+
                }
-           else if (choice == 2) {
-               List<Task> tasks = taskInterface.getAllTasks();
-
-               if (tasks.isEmpty()) {
-                   System.out.println("No tasks found. Your task list is empty.");
-               } else {
-                   tasks.forEach(task -> System.out.println(task.getId() + ". " + task.getTitle()));
-               }
-
-           } else if (choice == 3) {
-               System.out.println("Enter task number you want to complete: ");
-               int id = scanner.nextInt();
-               taskInterface.completeTask(id);
-               System.out.println("Task is complete");
+           } catch (NumberFormatException nfe) {
+               System.out.println("Invalid input. Please enter a number.");
                scanner.nextLine();
-           } else if (choice == 4) {
-               System.out.print("Enter task number to delete: ");
-               int id = scanner.nextInt();
-               boolean deleted = taskInterface.deleteTask(id);
-               if(deleted){
-                   System.out.println("Task successfully deleted.");
-               }
-               else {
-                   System.out.println("Task with ID " + id + " does not exist.");
-               }
-           }
-           else if(choice != 1 || choice != 2 || choice != 3 || choice != 4 || choice != 5 ){
-               System.out.println("Invalid choice. Please select 1,2,3,4 or 5");
            }
 
-           else{
-               isRunning = false;
-               System.out.println("Thank you for using the program bye");
-           }
+       }
+
        }
 
     }
-
-}
