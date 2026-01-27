@@ -1,3 +1,5 @@
+package main;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +15,7 @@ public class Main{
        System.out.println("Welcome to your task manager app!");
 
        while(isRunning) {
+
 
            System.out.println("1.Add a task");
            System.out.println("2.View All tasks");
