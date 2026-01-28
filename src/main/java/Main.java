@@ -1,4 +1,3 @@
-package main;
 
 import java.util.List;
 import java.util.Scanner;
@@ -47,8 +46,13 @@ public class Main{
                    case 3:
                        System.out.println("Enter task number you want to complete: ");
                        int id = scanner.nextInt();
-                       taskInterface.completeTask(id);
-                       System.out.println("Task is complete");
+                       boolean completed = taskInterface.completeTask(id);
+
+                       if(completed){
+                           System.out.println("Task marked as complete");
+                       } else {
+                           System.out.println("Task not found / already completed");
+                       }
                        scanner.nextLine();
                        break;
                    case 4:
@@ -60,6 +64,7 @@ public class Main{
                        } else {
                            System.out.println("Task with ID " + id + " does not exist.");
                        }
+                       scanner.nextLine();
                        break;
                    case 5:
                        isRunning = false;
@@ -73,7 +78,6 @@ public class Main{
                }
            } catch (NumberFormatException nfe) {
                System.out.println("Invalid input. Please enter a number.");
-               scanner.nextLine();
            }
 
        }

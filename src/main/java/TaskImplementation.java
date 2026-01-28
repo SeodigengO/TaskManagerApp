@@ -1,5 +1,3 @@
-package main;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +28,11 @@ public class TaskImplementation implements TaskInterface {
     public boolean completeTask(int id) {
         for (Task task : tasks) {
             if (task.getId() == id) {
+
+                if (task.isCompleted())
+                {
+                    return false;
+                }
                 task.markCompleted();
                 return true;
             }

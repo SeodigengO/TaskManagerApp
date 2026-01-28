@@ -1,5 +1,3 @@
-package main;
-
 public class Task {
 
     private int id;
@@ -12,6 +10,10 @@ public class Task {
         this.isCompleted = false;
     }
 
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
     public void markCompleted() {
         this.isCompleted = true;
     }
@@ -21,8 +23,11 @@ public class Task {
         return id;
     }
 
+
     public String getTitle() {
         return title;
     }
+
+
 
 }
