@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TaskTest {
 
@@ -17,5 +17,17 @@ public class TaskTest {
         assertEquals(1,task.getId());
     }
 
+    @Test
+    public void markCompleted(){
+        Task task = new Task(1,"Journaling");
+        task.markCompleted();
+        assertTrue(task.isCompleted());
+    }
+
+    @Test
+    public void isCompleted(){
+        Task task = new Task(1,"Skipping");
+        assertEquals(false,task.isCompleted());
+    }
 
 }

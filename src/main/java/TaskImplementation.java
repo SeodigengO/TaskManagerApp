@@ -12,10 +12,11 @@ public class TaskImplementation implements TaskInterface {
     }
 
     @Override
-    public void addTask(String title){
-        Task task = new Task(taskId,title);
+    public String addTask(String title){
+        Task task = new Task(taskId, title);
         tasks.add(task);
         taskId++;
+        return title;
     }
 
     @Override
