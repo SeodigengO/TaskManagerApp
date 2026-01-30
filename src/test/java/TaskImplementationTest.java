@@ -20,11 +20,29 @@ public class TaskImplementationTest {
     }
 
     @Test
-    public void addTaskTest()
+    public void shouldReturntaskAdded()
     {
         String addedTask = underTest.addTask("Jumping");
         assertEquals("Jumping", addedTask);
     }
 
+    @Test
+    public void shouldReturnAListInOrderExpected(){
+
+        underTest.addTask("Read");
+        underTest.addTask("Do Dished");
+
+        List<Task> tasks = underTest.getAllTasks();
+
+      assertEquals("Read",tasks.get(0).getTitle());
+      assertEquals("Do Dished",tasks.get(1).getTitle());
+    }
+
+    @Test
+    void shouldReturnAListWithTwoElements() {
+        underTest.addTask("Read");
+        List<Task> tasks = underTest.getAllTasks();
+        assertEquals(1,tasks.size());
+    }
 
 }
