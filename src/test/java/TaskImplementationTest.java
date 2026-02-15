@@ -1,18 +1,11 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskImplementationTest {
+
     private static TaskImplementation underTest;
     @BeforeEach
     void setup() {
@@ -27,7 +20,7 @@ public class TaskImplementationTest {
     }
 
     @Test
-    public void shouldReturnAListInOrderExpected(){
+    public void shouldReturnAllTaskAddedInOrder(){
 
         underTest.addTask("Read");
         underTest.addTask("Do Dished");
@@ -39,10 +32,34 @@ public class TaskImplementationTest {
     }
 
     @Test
-    void shouldReturnAListWithTwoElements() {
+    public void shouldReturnAListSize() {
         underTest.addTask("Read");
+        underTest.addTask("Jump");
         List<Task> tasks = underTest.getAllTasks();
-        assertEquals(1,tasks.size());
+        assertEquals(2,tasks.size());
     }
+
+    @Test
+    public void deleteTask_existingId_returnsTrue() {
+        underTest.addTask("Read");
+        underTest.addTask("Code");
+        
+        boolean result = underTest.deleteTask(1);
+        
+        assertTrue(result);
+        assertEquals(1, underTest.getAllTasks().size());
+        assertEquals("Code", underTest.getAllTasks().get(0).getTitle());
+    }
+
+    @Test
+    public void deleteTask_nonExistingId_returnsFalse() {
+        
+        underTest.addTask("Read");
+        boolean result = underTest.deleteTask(9);
+        
+        assertFalse(result);
+        assertEquals(1, underTest.getAllTasks().size());
+    }
+
 
 }
