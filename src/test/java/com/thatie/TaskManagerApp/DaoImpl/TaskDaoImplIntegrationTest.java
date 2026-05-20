@@ -35,9 +35,6 @@ public class TaskDaoImplIntegrationTest {
         Optional<Task> result = underTest.getTaskById(task.getId());
         assertThat(result).isPresent();
         assertThat(result.get()).isEqualTo(task);
-
-
-
     }
 
 }

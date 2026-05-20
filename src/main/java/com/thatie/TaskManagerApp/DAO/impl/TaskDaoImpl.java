@@ -30,6 +30,13 @@ public class TaskDaoImpl implements TaskDao {
         );
     }
 
+//
+    @Override
+    public List<Task> getAllTasks(){
+        return  jdbcTemplate.query("SELECT id, title, status, created_at FROM tasks",
+                new TaskRowMapper());
+    }
+
 
     @Override
     public Optional<Task> getTaskById(Long id) {
@@ -53,6 +60,16 @@ public class TaskDaoImpl implements TaskDao {
                     .build();
         }
 
+    }
+
+    @Override
+    public void deleteTask(Long id){
+        jdbcTemplate.update("DELETE FROM tasks where id = ?", id);
+    }
+
+    @Override
+    public void updateTask(Long id, Task task){
+        jdbcTemplate.update("UPDATE tasks SET title = ?, status = ?, created_at = ? WHERE id = ?", id, task.getTitle(),task.getStatus(),task.getCreatedAt() );
     }
 
 }
