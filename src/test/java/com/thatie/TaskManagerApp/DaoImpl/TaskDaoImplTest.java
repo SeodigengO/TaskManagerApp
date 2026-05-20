@@ -1,9 +1,9 @@
 package com.thatie.TaskManagerApp.DaoImpl;
 
-import DAO.impl.TaskDaoImpl;
+
+import com.thatie.TaskManagerApp.DAO.impl.TaskDaoImpl;
 import com.thatie.TaskManagerApp.Domain.Task;
 import com.thatie.TaskManagerApp.TestDataUtil;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -35,7 +35,7 @@ public class TaskDaoImplTest {
         ArgumentCaptor<LocalDateTime> captor = ArgumentCaptor.forClass(LocalDateTime.class);
 
         verify(jdbcTemplate).update(
-                eq("INSERT INTO tasks (id,title,status,createdAt) VALUES (?,?,?,?)"),
+                eq("INSERT INTO tasks (id, title, status, created_at) VALUES (?,?,?,?)"),
                 eq(task.getId()),
                 eq(task.getTitle()),
                 eq(task.getStatus()),
