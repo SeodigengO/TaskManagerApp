@@ -74,7 +74,7 @@ public class TaskDaoImplTest {
 
     @Test
     public void testThatUpdateGeneratesCorrectSQL() {
-        Task task = TestDataUtil.createTask(); // ensure fixed createdAt inside this
+        Task task = TestDataUtil.createTask();
 
         underTest.updateTask(3L, task);
 
